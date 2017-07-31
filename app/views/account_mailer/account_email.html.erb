@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <p><%= @user.name %> さん</p>
+    <p>勤怠管理システムへようこそ。</p>
+    <p>以下のメールアドレス・パスワードを使ってログインしてください。</p>
+    <p>メールアドレス：<%= @user.email %></p>
+    <p>パスワード：<%= @user.password %></p>
+    <p>ログインURL： <a href="http://localhost:3000/devise_users/sign_in">http://localhost:3000/devise_users/sign_in</a></p>
+    <p>なお、ログイン後は必ずパスワードを変更するようにしてください。</p>
+  </body>
+</html>

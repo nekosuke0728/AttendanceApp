@@ -75,6 +75,8 @@ GEM
     concurrent-ruby (1.0.5)
     devise-i18n (1.2.0)
     devise-i18n-views (0.3.7)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -200,6 +202,7 @@ DEPENDENCIES
   devise!
   devise-i18n
   devise-i18n-views
+  enum_help
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
