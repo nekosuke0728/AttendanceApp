@@ -63,6 +63,9 @@ gem 'devise', github: 'plataformatec/devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 
+# enum i18n対応
+gem 'enum_help'
+
 
 
 
