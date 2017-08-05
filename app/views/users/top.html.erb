@@ -1,5 +1,50 @@
 <h1>ユーザー専用トップページ</h1>
 
+<%= link_to "勤怠新規入力", new_attendance_path %><br />
+
 <%= link_to "パスワード変更", edit_user_registration_path %><br />
 
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %><br />
+
+<hr>
+
+<p id="RealtimeClockArea2"></p>
+
+<hr>
+
+<!-- 勤怠データが一つもない -->
+<% if @attendance.blank? %>
+  <p>本日の勤怠入力</p>
+  <p><%= "最初の勤怠を開始してください" %></p>
+  <%= button_to "勤怠を開始する", attendance_start_path, method: :post %>
+
+<!-- 勤怠データがある　＆　最後の勤怠データが今日以外　＆　未申請 -->
+<% elsif Date.parse(@attendance.start_at.to_s) != Date.today && @attendance.end_at.present? && @attendance.request == false %>
+  <p>申請されてない勤怠データがあります。申請をしてください。</p>
+  <p>勤怠開始時間：<%= @attendance.start_at %></p>
+  <p>勤怠終了時間：<%= @attendance.end_at %></p>
+  <%= button_to "申請", request_status_change_path(current_user.id), method: :patch %>
+
+<!-- 勤怠データがある　＆　最後の勤怠データが今日以外　＆　申請済 -->
+<% elsif Date.parse(@attendance.start_at.to_s) != Date.today && @attendance.request == true %>
+  <p>本日の勤怠入力</p>
+  <p><%= "勤怠を開始してください" %></p>
+  <%= button_to "勤怠を開始する", attendance_start_path(current_user.id), method: :post %>
+
+<!-- 勤怠データがある　＆　勤怠のデータが今日　＆　終了時間がnil -->
+<% elsif @attendance.start_at.present? && @attendance.end_at.nil? %>
+  <p>勤怠開始時間：<%= @attendance.start_at %></p>
+  <%= button_to "勤怠を終了する", attendance_end_path(current_user.id), method: :patch %>
+
+<!-- 勤怠データがある　＆　勤怠のデータが今日　＆　終了時間がある　＆　未申請 -->
+<% elsif @attendance.start_at.present? && @attendance.end_at.present? && @attendance.request == false %>
+  <p>勤怠開始時間：<%= @attendance.start_at %></p>
+  <p>勤怠終了時間：<%= @attendance.end_at %></p>
+  <p>本日の勤怠は終了しています。申請をしてください。</p>
+  <p>時間の変更がある場合には、勤怠一覧の編集メニューより修正ください。</p>
+  <%= button_to "申請", attendance_request_status_change_path, method: :patch %>
+
+ <!--  -->
+<% elsif %>
+  <p>本日もお疲れ様でした。</p>
+<% end %>
