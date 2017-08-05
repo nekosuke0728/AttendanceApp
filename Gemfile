@@ -13,11 +13,11 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -39,6 +39,14 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  # 追加
+  gem 'hirb'         # モデルの出力結果を表形式で表示するGem
+  gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
+  
+  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
+  gem 'pry-doc'    # methodを表示
+  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
+  gem 'pry-stack_explorer' # スタックをたどれる
 end
 
 group :development do
@@ -65,6 +73,15 @@ gem 'devise-i18n-views'
 
 # enum i18n対応
 gem 'enum_help'
+
+# bootstrap
+gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
+gem 'twitter-bootstrap-rails' # Bootstrapの本体
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+
+# 日付・時刻のバリデーション
+gem 'validates_timeliness', '~> 4.0', '>= 4.0.2'
 
 
 

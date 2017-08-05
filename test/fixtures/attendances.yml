@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2017-07-31 10:39:40
+  end: 2017-07-31 10:39:40
+  user_id: 1
+  approval: false
+  edit: false
+
+two:
+  start: 2017-07-31 10:39:40
+  end: 2017-07-31 10:39:40
+  user_id: 1
+  approval: false
+  edit: false

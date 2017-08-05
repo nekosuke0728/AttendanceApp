@@ -1,5 +1,9 @@
 <h1>勤怠管理App トップページ</h1>
 
-<%= link_to "管理者ログイン", admin_session_path %>
+<div class="top-menu">
 
-<%= link_to "ユーザーログイン", user_session_path %>
+<%= link_to "管理者ログイン", admin_session_path, class: "btn btn-info btn-lg login-btn" %>
+
+<%= link_to "ユーザーログイン", user_session_path, class: "btn btn-info btn-lg login-btn" %>
+
+</div>
