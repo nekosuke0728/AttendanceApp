@@ -83,6 +83,14 @@ gem 'autoprefixer-rails'
 # 日付・時刻のバリデーション
 gem 'validates_timeliness', '~> 4.0', '>= 4.0.2'
 
+# ページネーション
+gem 'kaminari', '~> 1.0', '>= 1.0.1'
+
+# 初期データ投入
+gem 'seed-fu', '~> 2.3', '>= 2.3.6'
+
+
+
 
 
 

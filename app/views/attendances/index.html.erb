@@ -1,0 +1,68 @@
+<%= link_to "管理者トップページ", admin_path %>
+
+<h1>ユーザー勤怠一覧</h1>
+
+<%#= form_tag '', method: :get do %>
+  <%#= label_tag :title %>
+  <%#= text_field_tag :title, '', value: params[:title] %>
+  <%#= label_tag :min_price %>
+  <%#= number_field_tag :min_price, '', value: params[:min_price] %>
+  <%#= label_tag :max_price %>
+  <%#= number_field_tag :max_price, '', value: params[:max_price] %>
+  <%#= submit_tag %>
+<%# end %>
+
+<%#= form_tag(attendances_path, method: "get") do %>
+  <%#= label_tag :user_id %>
+  <%#= collection_select(:user_id, '', User.all, :id, :name) %>
+  <%#= submit_tag %>
+<%# end %>
+
+<%#= form_tag '', method: :get do %>
+  <%#= label_tag :user_name %>
+  <%#= text_field_tag :user_name, '', value: params[:user_name] %>
+  <%#= submit_tag %>
+<%# end %>
+
+
+<div> 
+  <%= form_tag(attendances_path, method: "get") do %>
+    <%= label_tag :user_id, "ユーザー" %>
+    <%= collection_select nil, :user_id, User.all, :id, :name, include_blank: true  %>
+    <%= label_tag :select_day, "日付選択" %>
+    <%= date_select nil, :start_at %> - <%= date_select nil, :end_at %>
+    <%= submit_tag "検索" %>
+  <% end %>
+</div>
+
+
+
+<%#= paginate @attendances %>
+
+<table width="100%">
+
+  <tr>
+    <th>勤怠ID</th>
+    <th>ユーザーID</th>
+    <th>名前</th>
+    <th>開始時間</th>
+    <th>終了時間</th>
+    <th>承認状況</th>
+  </tr>
+
+  <% @attendances.each do |attendance| %>
+    <tr>
+      <td width="10%"><%= attendance.id %></td>
+      <td width="10%"><%= attendance.user_id %></td>
+      <td width="15%"><%= attendance.user.name %></td>
+      <td width="25%"><%= attendance.start_at %></td>
+      <td width="25%"><%= attendance.end_at %></td>
+      <td class="btn btn-default center-block attendance-btn">
+        <%= link_to attendance.approval ? '承認済' : '未承認', attendance_approval_status_change_path(attendance.id), method: :patch, remote: true %>
+      </td>
+    </tr>
+  <% end %>
+
+</table>
+
+<%#= paginate @attendances %>

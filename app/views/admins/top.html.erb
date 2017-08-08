@@ -1,5 +1,9 @@
 <h1>管理者専用トップページ</h1>
 
+<%= link_to "ユーザー勤怠一覧", attendances_path %><br />
+
 <%= link_to "ユーザー新規登録", new_user_registration_path %><br />
+
+<%= link_to "ユーザーアカウント一覧", users_index_path %><br />
 
 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %><br />
