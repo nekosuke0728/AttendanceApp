@@ -1,0 +1,24 @@
+<h1>勤怠個別ページ</h1>
+
+<br>
+
+<p>勤怠ID：<%= @attendance.id %></p>
+<p>ユーザーID：<%= @attendance.user_id %></p>
+<p>名前：<%= @attendance.user.name %></p>
+<p>開始時間：<%= @attendance.start_at %></p>
+<p>終了時間：<%= @attendance.end_at %></p>
+<p>申請状況：<%= @attendance.request ? '申請済' : '未申請' %></p>
+<p>承認状況：
+  <%= link_to @attendance.approval ? '承認済' : '未承認', attendance_approval_status_change_path(@attendance.id), method: :patch, remote: true %>
+</p>
+<p>編集状況：<%= @attendance.edit ? '編集済' : '未編集' %></p>
+
+<br>
+
+<%= link_to "編集", edit_attendance_path(@attendance.id) %>
+
+<br>
+
+<br>
+
+<%= link_to "勤怠一覧へ戻る", attendances_path %>

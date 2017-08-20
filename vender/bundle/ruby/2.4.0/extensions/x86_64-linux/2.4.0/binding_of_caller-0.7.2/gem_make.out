@@ -1,0 +1,21 @@
+current directory: /vagrant/09_AttendanceApp/AttendanceApp/vender/bundle/ruby/2.4.0/gems/binding_of_caller-0.7.2/ext/binding_of_caller
+/home/vagrant/.rvm/rubies/ruby-2.4.0/bin/ruby -r ./siteconf20170820-5833-1potm1u.rb extconf.rb
+
+current directory: /vagrant/09_AttendanceApp/AttendanceApp/vender/bundle/ruby/2.4.0/gems/binding_of_caller-0.7.2/ext/binding_of_caller
+make "DESTDIR=" clean
+make: Warning: File `Makefile' has modification time 0.57 s in the future
+make: *** No rule to make target `clean'.  Stop.
+
+current directory: /vagrant/09_AttendanceApp/AttendanceApp/vender/bundle/ruby/2.4.0/gems/binding_of_caller-0.7.2/ext/binding_of_caller
+make "DESTDIR="
+make: Warning: File `Makefile' has modification time 0.56 s in the future
+echo "Nada."
+Nada.
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /vagrant/09_AttendanceApp/AttendanceApp/vender/bundle/ruby/2.4.0/gems/binding_of_caller-0.7.2/ext/binding_of_caller
+make "DESTDIR=" install
+make: Warning: File `Makefile' has modification time 0.56 s in the future
+echo "Nada."
+Nada.
+make: warning:  Clock skew detected.  Your build may be incomplete.

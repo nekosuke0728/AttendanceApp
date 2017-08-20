@@ -1,0 +1,15 @@
+<h1>勤怠ID：<%= @attendance.id %>の編集</h1>
+
+  <%= form_for(@attendance, method: :patch) do |f|  %>
+    <p>勤怠ID：<%= @attendance.id %></p>
+    <p>ユーザーID：<%= @attendance.user_id %></p>
+    <p>名前：<%= @attendance.user.name %></p>
+    <p>勤怠開始時間：<%= f.datetime_select :start_at, include_blank: true %></p>
+    <p>勤怠終了時間：<%= f.datetime_select :end_at, include_blank: true %></p>
+    <p>申請状況：<%= @attendance.request ? '申請済' : '未申請' %></p>
+    <p>承認状況：<%= @attendance.approval ? '承認済' : '未承認' %></p>
+    <p>編集状況：<%= @attendance.edit ? '編集済' : '未編集' %></p>
+    <%= f.hidden_field :edit, value: :true %>
+    <%= f.submit '更新' %>
+  <% end %>
+

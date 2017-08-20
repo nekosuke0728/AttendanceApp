@@ -2,42 +2,32 @@
 
 <h1>ユーザー勤怠一覧</h1>
 
-<%#= form_tag '', method: :get do %>
-  <%#= label_tag :title %>
-  <%#= text_field_tag :title, '', value: params[:title] %>
-  <%#= label_tag :min_price %>
-  <%#= number_field_tag :min_price, '', value: params[:min_price] %>
-  <%#= label_tag :max_price %>
-  <%#= number_field_tag :max_price, '', value: params[:max_price] %>
-  <%#= submit_tag %>
-<%# end %>
+<div class="search"> 
 
-<%#= form_tag(attendances_path, method: "get") do %>
-  <%#= label_tag :user_id %>
-  <%#= collection_select(:user_id, '', User.all, :id, :name) %>
-  <%#= submit_tag %>
-<%# end %>
-
-<%#= form_tag '', method: :get do %>
-  <%#= label_tag :user_name %>
-  <%#= text_field_tag :user_name, '', value: params[:user_name] %>
-  <%#= submit_tag %>
-<%# end %>
-
-
-<div> 
-  <%= form_tag(attendances_path, method: "get") do %>
-    <%= label_tag :user_id, "ユーザー" %>
-    <%= collection_select nil, :user_id, User.all, :id, :name, include_blank: true  %>
-    <%= label_tag :select_day, "日付選択" %>
-    <%= date_select nil, :start_at %> - <%= date_select nil, :end_at %>
+<p>絞込検索</p>
+  <%= form_tag '', method: :get do %>
+    <%= label_tag :user_id, "名前：" %>
+    <%= select "", :user_id, options_from_collection_for_select(User.all, :id, :name, { :selected => @user_id.to_s }), include_blank: true %>
+    <br>
+    <%= label_tag :date_select,"日付：" %>
+    <%= select_date @start_at, prefix: 'start_at' %>
+     - 
+    <%= select_date @end_at, prefix: 'end_at' %>
+    <br>
+    <%= label_tag :approval_select, "承認状況" %>
+    <%= select "", :approval, options_for_select([["すべて", ""],["承認済", "approved"],["未承認", "unapproved"]], :selected => @approval.to_s) %>
+    <br>
+    <%= label_tag :embossed, "打刻状況" %>
+    <%= select "", :embossed, options_for_select([["すべて", ""],["未退勤", "embossed_unfinish"],["退勤済", "embossed_finish"]], :selected => @embossed.to_s) %>
+    <br>
     <%= submit_tag "検索" %>
   <% end %>
+
 </div>
 
+<br>
 
-
-<%#= paginate @attendances %>
+<%= paginate @attendances %>
 
 <table width="100%">
 
@@ -48,6 +38,8 @@
     <th>開始時間</th>
     <th>終了時間</th>
     <th>承認状況</th>
+    <th colspan="1"></th>
+    <th colspan="1"></th>
   </tr>
 
   <% @attendances.each do |attendance| %>
@@ -55,14 +47,16 @@
       <td width="10%"><%= attendance.id %></td>
       <td width="10%"><%= attendance.user_id %></td>
       <td width="15%"><%= attendance.user.name %></td>
-      <td width="25%"><%= attendance.start_at %></td>
-      <td width="25%"><%= attendance.end_at %></td>
+      <td width="20%"><%= attendance.start_at %></td>
+      <td width="20%"><%= attendance.end_at %></td>
       <td class="btn btn-default center-block attendance-btn">
-        <%= link_to attendance.approval ? '承認済' : '未承認', attendance_approval_status_change_path(attendance.id), method: :patch, remote: true %>
+        <%= link_to attendance.approval_i18n, attendance_approval_status_change_path(attendance.id), method: :patch, remote: true %>
       </td>
+      <td width="5%"><%= link_to "詳細", attendance_path(attendance.id) %></td>
+      <td width="5%"><%= link_to "編集", edit_attendance_path(attendance.id) %></td>
     </tr>
   <% end %>
 
 </table>
 
-<%#= paginate @attendances %>
+<%= paginate @attendances %>

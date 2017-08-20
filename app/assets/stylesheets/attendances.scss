@@ -6,7 +6,7 @@ table tr td {
   background: #f6f6f6;
   color: #606060;
   padding: 5px 10px;
-  font-size: 14pt;
+  font-size: 12pt;
   text-align: center;
 }
 
@@ -17,4 +17,10 @@ table tr th {
   font-size: 12pt;
   font-weight: bold;
   text-align: center;
+}
+
+.search {
+  margin: 30px 30px;
+  padding: 20px;
+  border: medium solid #ff6347;
 }

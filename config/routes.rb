@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   # 勤怠
   resources :attendances
+
   post 'attendances/start_attendance',            to: 'attendances#start_attendance',       as: :attendance_start_attendance
   patch 'attendances/:id/end_attendance',         to: 'attendances#end_attendance',         as: :attendance_end_attendance
   patch 'attendances/:id/request_status_change',  to: 'attendances#request_status_change',  as: :attendance_request_status_change

@@ -25,6 +25,7 @@ class User < ApplicationRecord
   validates :address, presence: true
   validates :phone, presence: true
 
+
   def can_start?
     # 未申請の勤怠があれば勤怠開始はできない
     return false if Attendance.where(user_id: self.id, request: false).count > 0
