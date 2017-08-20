@@ -215,4 +215,10 @@ ja:
         contract_employee: "契約社員" 
         part_time_job: "アルバイト"
         other: "その他"
+    attendance:
+      approval:
+        approved: "承認済"
+        unapproved: "未承認"
+
+
 

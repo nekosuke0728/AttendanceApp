@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_user!, only: [:top]
+
+  def index
+    @users = User.all
+  end
 
   def top
-    @attendance = current_user.attendances.last
+    @attendance = Attendance.where(user_id: current_user.id).order(start_at: :desc).first
   end
 
 end

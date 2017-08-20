@@ -1,0 +1,29 @@
+<%= link_to "管理者トップページ", admin_path %>
+
+<h1>ユーザーアカウント一覧</h1>
+
+<table width="100%">
+  <tr>
+    <th>ユーザーID</th>
+    <th>名前</th>
+    <th>メールアドレス</th>
+    <th>性別</th>
+    <th>契約種別</th>
+    <th>生年月日</th>
+    <th>住所</th>
+    <th>電話番号</th>
+  </tr>
+
+<% @users.each do |user| %>
+    <tr>
+      <td width="5%"><%= user.id %></td>
+      <td width="10%"><%= user.name %></td>
+      <td width="10%"><%= user.email %></td>
+      <td width="5%"><%= user.gender_i18n %></td>
+      <td width="10%"><%= user.employment_status_i18n %></td>
+      <td width="10%"><%= user.birthday %></td>
+      <td width="20%"><%= user.address %></td>
+      <td width="20%"><%= user.phone %></td>
+    </tr>
+  <% end %>
+</table>
