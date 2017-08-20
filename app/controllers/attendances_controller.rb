@@ -14,7 +14,8 @@ class AttendancesController < ApplicationController
     end
 
     @start_at = Attendance.order(:start_at).first.start_at
-    @end_at = [ Attendance.order(:end_at).last.end_at, Time.now ].max
+    # @end_at = [ Attendance.order(:end_at).last.end_at, Time.now ].max
+    @end_at = Attendance.order(:end_at).last.end_at
 
     if params[:embossed] == 'embossed_unfinish'
       @embossed = 'embossed_unfinish'
@@ -35,7 +36,7 @@ class AttendancesController < ApplicationController
       elsif @embossed == 'embossed_unifinish'
         @attendances = @attendances.date_select(@start_at, nil)
       elsif @embossed == ''
-        attendances = @attendances.date_select(@start_at, @end_at)
+        @attendances = @attendances.date_select(@start_at, @end_at)
       end
     end
 
