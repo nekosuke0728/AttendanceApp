@@ -217,8 +217,6 @@ ja:
         other: "その他"
     attendance:
       approval:
-        approved: "承認済"
+        approved: "承認済" 
         unapproved: "未承認"
-
-
 

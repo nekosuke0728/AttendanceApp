@@ -1,17 +1,31 @@
 <h1>勤怠個別ページ</h1>
 
-<br>
-
-<p>勤怠ID：<%= @attendance.id %></p>
-<p>ユーザーID：<%= @attendance.user_id %></p>
-<p>名前：<%= @attendance.user.name %></p>
-<p>開始時間：<%= @attendance.start_at %></p>
-<p>終了時間：<%= @attendance.end_at %></p>
-<p>申請状況：<%= @attendance.request ? '申請済' : '未申請' %></p>
-<p>承認状況：
-  <%= link_to @attendance.approval ? '承認済' : '未承認', attendance_approval_status_change_path(@attendance.id), method: :patch, remote: true %>
-</p>
-<p>編集状況：<%= @attendance.edit ? '編集済' : '未編集' %></p>
+<table class="show-table">
+  <tr>
+    <td>勤怠ID：</td><td><%= @attendance.id %></td>
+  </tr>
+  <tr>
+    <td>ユーザーID：</td><td><%= @attendance.user_id %></td>
+  </tr>
+  <tr>
+    <td>名前：</td><td><%= @attendance.user.name %></td>
+  </tr>
+  <tr>
+    <td>開始時間：</td><td><%= @attendance.start_at %></td>
+  </tr>
+  <tr>
+    <td>終了時間：</td><td><%= @attendance.end_at %></td>
+  </tr>
+  <tr>
+    <td>申請状況：</td><td><%= @attendance.request ? '申請済' : '未申請' %></td>
+  </tr>
+  <tr>
+    <td>承認状況：</td><td><%= @attendance.approval_i18n %></td>
+  </tr>
+  <tr>
+    <td>編集状況：</td><td><%= @attendance.edit ? '編集済' : '未編集' %></td>
+  </tr>
+</table>
 
 <br>
 

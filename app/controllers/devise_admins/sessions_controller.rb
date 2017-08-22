@@ -23,9 +23,9 @@ class DeviseAdmins::SessionsController < Devise::SessionsController
     admin_path
   end
   # ログアウト後のリダイレクト先
-  def after_sign_out_path_for(resource)
-    admin_session_path
-  end
+  # def after_sign_out_path_for(resource)
+  #   admin_session_path
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

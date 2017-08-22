@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac4049ec-aaae-4e55-a37b-78c93a548bee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/AttendanceApp.iml" afterPath="$PROJECT_DIR$/.idea/AttendanceApp.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/attendances.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/attendances.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/attendances_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/attendances_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/attendance.rb" afterPath="$PROJECT_DIR$/app/models/attendance.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/attendances/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/attendances/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/attendances/index.html.erb" afterPath="$PROJECT_DIR$/app/views/attendances/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/attendances/show.html.erb" afterPath="$PROJECT_DIR$/app/views/attendances/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/ja.yml" afterPath="$PROJECT_DIR$/config/locales/ja.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -25,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Gemfile.lock" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile.lock">
           <provider selected="true" editor-type-id="text-editor">
@@ -40,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/attendances/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,9 +76,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="RailsProjectView" />
       <pane id="Scratches" />
+      <pane id="RailsProjectView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,11 +232,12 @@
       <workItem from="1502628705823" duration="13000" />
       <workItem from="1502634087486" duration="375000" />
       <workItem from="1502707535416" duration="266000" />
+      <workItem from="1503228754551" duration="82000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5376000" />
+    <option name="totallyTimeSpent" value="5458000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -279,6 +273,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -298,7 +300,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/attendances/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
