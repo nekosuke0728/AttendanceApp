@@ -14,8 +14,7 @@ class AttendancesController < ApplicationController
     end
 
     @start_at = Attendance.order(:start_at).first.start_at
-    # @end_at = [ Attendance.order(:end_at).last.end_at, Time.now ].max
-    @end_at = Attendance.order(:end_at).last.end_at
+    @end_at = [ Attendance.order(:end_at).last.end_at, Time.now ].max
 
     if params[:embossed] == 'embossed_unfinish'
       @embossed = 'embossed_unfinish'
@@ -76,8 +75,12 @@ class AttendancesController < ApplicationController
   # admin 勤怠情報修正
   def update
     @attendance = Attendance.find_by(id: params[:id])
-    @attendance.update(attendance_params)
-    redirect_to attendance_path(@attendance.id)
+    if @attendance.update(attendance_params)
+      redirect_to attendance_path(@attendance.id)
+    else
+      @error = "終了時間が開始時間よりも早い時間を選択しています"
+      render 'attendances/edit'
+    end
   end
 
   # admin 勤怠個別表示 v

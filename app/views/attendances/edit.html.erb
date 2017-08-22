@@ -1,5 +1,7 @@
 <h1>勤怠ID：<%= @attendance.id %>の編集</h1>
 
+<h3><%= @error unless @error.nil? %></h3>
+
   <%= form_for(@attendance, method: :patch) do |f|  %>
     <p>勤怠ID：<%= @attendance.id %></p>
     <p>ユーザーID：<%= @attendance.user_id %></p>
