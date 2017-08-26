@@ -1,20 +1,43 @@
 class AttendancesController < ApplicationController
-  before_action :authenticate_admin!, only: [:index, :destroy, :show, :edit, :update, :approval, :approval_status_change]
-  before_action :authenticate_user!, only: [:create, :new, :start_attendance, :end_attendance, :request_status_change, :user_index]
+  before_action :authenticate_admin!, only: [:index, :destroy, :approval, :approval_status_change]
+  before_action :authenticate_user!, only: [:create, :new, :user_edit, :start_attendance, :end_attendance, :request_status_change, :user_index]
+  before_action :authenticate_all, only: [:edit, :update, :show]
 
   include AjaxHelper 
 
+  # user 勤怠一覧 v
+  def user_index
+    @attendances = current_user.attendances.order(start_at: :desc)
+
+    if @attendances != nil
+      if current_user.attendances.present?
+        @start_at = current_user.attendances.order(:start_at).first.start_at
+      end
+      @end_at = Date.today
+    end
+
+    if params[:start_at].present? && params[:start_at]['year'].present? && params[:end_at].present? && params[:end_at]['year'].present?
+      @start_at =  Time.mktime params[:start_at]["year"].to_i, params[:start_at]["month"].to_i, params[:start_at]["day"].to_i, 00, 00, 00
+      @end_at   =  Time.mktime params[:end_at]["year"].to_i, params[:end_at]["month"].to_i, params[:end_at]["day"].to_i, 23, 59, 59
+      if @start_at != nil
+        @attendances = @attendances.date_select(@start_at, @end_at)
+      end
+    end
+  end
+
   # admin ユーザー勤怠一覧
   def index
-    @attendances = Attendance.page(params[:page]).per(100).includes(:user)
+    @attendances = Attendance.page(params[:page]).per(100).includes(:user).order(start_at: :desc)
 
     if params[:user_id].present?
       @user_id = params[:user_id]
       @attendances = @attendances.get_by_user(@user_id)
     end
 
-    @start_at = Attendance.order(:start_at).first.start_at
-    @end_at = [ Attendance.order(:end_at).last.end_at, Time.now ].max
+    if @attendances != nil
+      @start_at = Attendance.order(:start_at).first.start_at
+      @end_at = [ Attendance.order(:end_at).last.end_at, Time.now ].max
+    end
 
     if params[:embossed] == 'embossed_unfinish'
       @embossed = 'embossed_unfinish'
@@ -67,12 +90,12 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new
   end
 
-  # admin 勤怠情報修正 v
+  # admin & user 勤怠情報修正 v
   def edit
     @attendance = Attendance.find_by(id: params[:id])
   end
 
-  # admin 勤怠情報修正
+  # admin & user 勤怠情報修正
   def update
     @attendance = Attendance.find_by(id: params[:id])
     if @attendance.update(attendance_params)
@@ -135,14 +158,14 @@ class AttendancesController < ApplicationController
     end
   end
 
-  def user_index
-        
-  end
-
   private
 
   def attendance_params
     params.require(:attendance).permit(:start_at, :end_at, :user_id, :request, :approval, :edit)
+  end
+
+  def authenticate_all
+    user_signed_in? || admin_signed_in?
   end
 
 end

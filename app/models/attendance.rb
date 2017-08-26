@@ -7,6 +7,8 @@ class Attendance < ApplicationRecord
   validates_datetime :end_at, :after => :start_at, on: :update
 
   enum approval: { approved: true, unapproved: false }
+  enum request: { applied: true, unapplied: false }
+  enum edit: { edited: true, unedited: false }
 
   scope :get_by_user, ->(u_id) { where(user_id: u_id) if u_id.present? }
 

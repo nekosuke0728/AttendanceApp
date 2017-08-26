@@ -35,5 +35,6 @@ Rails.application.routes.draw do
   patch 'attendances/:id/end_attendance',         to: 'attendances#end_attendance',         as: :attendance_end_attendance
   patch 'attendances/:id/request_status_change',  to: 'attendances#request_status_change',  as: :attendance_request_status_change
   patch 'attendances/:id/approval_status_change', to: 'attendances#approval_status_change', as: :attendance_approval_status_change
+  get 'attendances/:id/user_index',               to: 'attendances#user_index',             as: :attendance_user_index
  
 end

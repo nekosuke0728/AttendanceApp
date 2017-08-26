@@ -5,8 +5,8 @@ class DeviseUsers::RegistrationsController < Devise::RegistrationsController
   # prepend_before_action :require_no_authentication, :only => [ :cancel]
   # prepend_before_action :authenticate_scope!, :only => [:new, :create ,:edit, :update, :destroy]
 
-  prepend_before_action :require_no_authentication, :only => [ :cancel, :destroy]
-  prepend_before_action :authenticate_scope!, :only => [:new, :create ,:edit, :update]
+  prepend_before_action :require_no_authentication, :only => [:new, :create, :cancel, :destroy]
+  prepend_before_action :authenticate_scope!, :only => [:edit, :update]
 
   before_action :redirect_if_not_admin, only: [:new, :create, :cancel]
   before_action :configure_permitted_parameters

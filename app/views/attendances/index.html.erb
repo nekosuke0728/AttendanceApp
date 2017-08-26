@@ -43,7 +43,7 @@
   </tr>
 
   <% @attendances.each do |attendance| %>
-    <tr>
+    <tr <%= 'class=red' if attendance.end_at.nil? %> >
       <td width="10%"><%= attendance.id %></td>
       <td width="10%"><%= attendance.user_id %></td>
       <td width="15%"><%= attendance.user.name %></td>
@@ -56,6 +56,7 @@
       <td width="5%"><%= link_to "編集", edit_attendance_path(attendance.id) %></td>
     </tr>
   <% end %>
+
 
 </table>
 

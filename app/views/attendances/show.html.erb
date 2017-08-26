@@ -17,13 +17,13 @@
     <td>終了時間：</td><td><%= @attendance.end_at %></td>
   </tr>
   <tr>
-    <td>申請状況：</td><td><%= @attendance.request ? '申請済' : '未申請' %></td>
+    <td>申請状況：</td><td><%= @attendance.request_i18n %></td>
   </tr>
   <tr>
     <td>承認状況：</td><td><%= @attendance.approval_i18n %></td>
   </tr>
   <tr>
-    <td>編集状況：</td><td><%= @attendance.edit ? '編集済' : '未編集' %></td>
+    <td>編集状況：</td><td><%= @attendance.edit_i18n %></td>
   </tr>
 </table>
 
@@ -35,4 +35,4 @@
 
 <br>
 
-<%= link_to "勤怠一覧へ戻る", attendances_path %>
+<%= link_to "戻る", :back %>
