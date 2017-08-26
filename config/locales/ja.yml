@@ -219,4 +219,11 @@ ja:
       approval:
         approved: "承認済" 
         unapproved: "未承認"
+      edit:
+        edited: "編集済"
+        unedited: "未編集"
+      request:
+        applied: "申請済"
+        unapplied: "未申請"
+
 

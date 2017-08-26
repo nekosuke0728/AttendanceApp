@@ -50,6 +50,7 @@ group :development, :test do
 end
 
 group :development do
+  # エラー画面をわかりやすく整形してくれる
   gem 'better_errors'
   gem 'binding_of_caller'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -89,8 +90,7 @@ gem 'validates_timeliness', '~> 4.0', '>= 4.0.2'
 gem 'kaminari', '~> 1.0', '>= 1.0.1'
 
 # 初期データ投入
-gem 'seed-fu', '~> 2.3', '>= 2.3.6'
-
+gem 'seed-fu'
 
 
 
