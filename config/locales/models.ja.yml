@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      attendance: "勤怠"
+
+    attributes:
+      attendance:
+        start_at: "開始時間"
+        end_at: "終了時間"
+        request: "申請"
+        approval: "承認"
+        edit: "編集"

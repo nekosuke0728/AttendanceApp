@@ -10,15 +10,29 @@
     <%= select "", :user_id, options_from_collection_for_select(User.all, :id, :name, { :selected => @user_id.to_s }), include_blank: true %>
     <br>
     <%= label_tag :date_select,"日付：" %>
+    <br>
+    <% if params[:use_start_at] %>
+      <%= check_box_tag :use_start_at, true, checked: "checked" %> 打刻開始時刻の下限を設定する
+    <% else %>
+      <%= check_box_tag :use_start_at, true %> 打刻開始時刻の下限を設定する
+    <% end %>
+    <br>
     <%= select_date @start_at, prefix: 'start_at' %>
-     - 
+    <br>
+    <% if params[:use_end_at] %>
+      <%= check_box_tag :use_end_at, true, checked: "checked" %> 打刻終了時刻の上限を設定する
+    <% else %>
+      <%= check_box_tag :use_end_at, true %> 打刻終了時刻の上限を設定する
+    <% end %>
+    <br>
     <%= select_date @end_at, prefix: 'end_at' %>
     <br>
+    <br>
     <%= label_tag :approval_select, "承認状況" %>
-    <%= select "", :approval, options_for_select([["すべて", ""],["承認済", "approved"],["未承認", "unapproved"]], :selected => @approval.to_s) %>
+    <%= select "", :approval, options_for_select([["すべて", ""],["承認済", "approved"],["未承認", "unapproved"]], :selected => params[:approval].to_s) %>
     <br>
     <%= label_tag :embossed, "打刻状況" %>
-    <%= select "", :embossed, options_for_select([["すべて", ""],["未退勤", "embossed_unfinish"],["退勤済", "embossed_finish"]], :selected => @embossed.to_s) %>
+    <%= select "", :embossed, options_for_select([["すべて", ""],["未退勤", "embossed_unfinish"],["退勤済", "embossed_finish"]], :selected => params[:embossed].to_s) %>
     <br>
     <%= submit_tag "検索" %>
   <% end %>
@@ -49,9 +63,17 @@
       <td width="15%"><%= attendance.user.name %></td>
       <td width="20%"><%= attendance.start_at %></td>
       <td width="20%"><%= attendance.end_at %></td>
-      <td class="btn btn-default center-block attendance-btn">
-        <%= link_to attendance.approval_i18n, attendance_approval_status_change_path(attendance.id), method: :patch, remote: true %>
-      </td>
+
+      <% if attendance.approval == "approved" %>
+        <td class='btn btn-sm btn-primary center-block attendance-btn'>
+          <%= link_to attendance.approval_i18n, attendance_approval_status_change_path(attendance.id), :style=>"color:white;", method: :patch, remote: true %>
+        </td>
+      <% else %>
+        <td class='btn btn-sm btn-danger center-block attendance-btn'>
+          <%= link_to attendance.approval_i18n, attendance_approval_status_change_path(attendance.id), :style=>"color:white;",  method: :patch, remote: true %>
+        </td>
+      <% end %>
+      
       <td width="5%"><%= link_to "詳細", attendance_path(attendance.id) %></td>
       <td width="5%"><%= link_to "編集", edit_attendance_path(attendance.id) %></td>
     </tr>

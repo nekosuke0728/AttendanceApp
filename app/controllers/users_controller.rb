@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, only: [:top]
 
-  def index
+  def account_index
     @users = User.all
   end
 

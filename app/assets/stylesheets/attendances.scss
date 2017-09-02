@@ -2,11 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table tr td {
-  color: #606060;
-  padding: 5px 10px;
-  font-size: 12pt;
-  text-align: center;
+table {
+  border: solid black 2px;
 }
 
 table tr th {
@@ -16,10 +13,24 @@ table tr th {
   font-size: 12pt;
   font-weight: bold;
   text-align: center;
+  border-width: 2px 0px;
+  border-color: black;
+  border-style: solid;
 }
 
-.red {
-  background-color: #ff0000;
+table tr td {
+  color: #606060;
+  padding: 5px 10px;
+  font-size: 12pt;
+  text-align: center;
+  border-width: 1px 0px;
+  border-color: black;
+  border-style: dotted;
+  padding: 0.3em; 
+}
+
+.red td {
+  color: #ff0000;
 }
 
 .search {
@@ -31,3 +42,5 @@ table tr th {
 .show-table td {
   text-align: left;
 }
+
+
