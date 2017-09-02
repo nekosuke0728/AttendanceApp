@@ -1,12 +1,27 @@
+<%= link_to "ユーザー専用トップページ", users_path(current_user.id) %><br />
+
 <h1>個人勤怠一覧</h1>
 
-<div class="search"> 
+<div class="search">
 
 <p>絞込検索</p>
   <%= form_tag '', method: :get do %>
     <%= label_tag :date_select,"日付：" %>
+    <br>
+    <% if params[:use_start_at] %>
+      <%= check_box_tag :use_start_at, true, checked: "checked" %> 打刻開始時刻の下限を設定する
+    <% else %>
+      <%= check_box_tag :use_start_at, true %> 打刻開始時刻の下限を設定する
+    <% end %>
+    <br>
     <%= select_date @start_at, prefix: 'start_at' %>
-     - 
+    <br>
+    <% if params[:use_end_at] %>
+      <%= check_box_tag :use_end_at, true, checked: "checked" %> 打刻終了時刻の上限を設定する
+    <% else %>
+      <%= check_box_tag :use_end_at, true %> 打刻終了時刻の上限を設定する
+    <% end %>
+    <br>
     <%= select_date @end_at, prefix: 'end_at' %>
     <br>
     <%= submit_tag "検索" %>
@@ -15,7 +30,7 @@
 
 <br>
 
-<%#= paginate @attendances %>
+<%= paginate @attendances %>
 
 <table width="100%">
 

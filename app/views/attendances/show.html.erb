@@ -33,6 +33,8 @@
 
 <br>
 
-<br>
-
-<%= link_to "戻る", :back %>
+<% if admin_signed_in? %>
+  <%= link_to "ユーザー勤怠一覧へ戻る", attendances_path %><br />
+<% else user_signed_in? %>
+  <%= link_to "個人勤怠一覧へ戻る", attendance_user_index_path %><br />
+<% end %>

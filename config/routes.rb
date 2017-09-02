@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   get 'admin', to: 'admins#top', as: 'admin'
-  get 'users/index'
+  get 'users/account_index'
 
   # ユーザー用
   devise_for :users, path: 'devise_users',

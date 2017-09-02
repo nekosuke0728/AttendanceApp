@@ -1,0 +1,155 @@
+require 'rails_helper'
+
+RSpec.describe "Attendance#create", type: :model do
+  let!(:user) { create(:user) }
+
+  # 正常系 ====================================================
+
+  it "データの保存に成功する" do
+    expect(build(:attendance)).to be_valid
+  end
+
+end
+
+
+# ========================================================================================================
+
+RSpec.describe 'Attendance#update', type: :model do
+  let!(:user) { create(:user) }
+
+  # 正常系 ====================================================
+
+  context "退勤時刻が打刻されている場合" do
+    let(:attendance) { create(:attendance) }
+    it "承認することができる" do
+      attendance.update(end_at: 'Time.zone.local(2016, 8, 1, 17, 00, 00)')
+    end
+  end
+
+  # 異常系 ====================================================
+
+  context "退勤時刻が打刻されていない場合"  do
+    let!(:attendance) { create(:attendance) }
+
+    it "更新することができない" do
+      expect(attendance.update(end_at: nil)).to be false
+    end
+
+    it "承認することができない" do
+      expect(attendance.update(approval: "approved")).to be false
+    end
+  end
+end
+
+# ========================================================================================================
+
+RSpec.describe Attendance, type: :model do
+  let!(:user) { create(:user) }
+  let!(:user2) { create(:user, :user2) }
+  let!(:user3) { create(:user, :user3) }
+  # let!(:user2) { create(:user,:user2) }
+  # let!(:user3) { create(:user,:user3) }
+  let!(:attendance) { create(:attendance) }
+  let!(:attendance_user2) { create(:attendance, id: 2, user_id: 2) }
+  let!(:attendance_user3) { create(:attendance, id: 3, user_id: 3) }
+  # let!(:attendance_user2) { create(:attendance,:attendance_user2) }
+  # let!(:attendance_user3) { create(:attendance,:attendance_user3) }
+  let!(:attendance_approved) { create(:attendance,:attendance_approved) }
+  let!(:attendance_unapproved) { create(:attendance,:attendance_unapproved) }
+  let!(:attendance_embossed_finish) { create(:attendance,:attendance_embossed_finish) }
+  let!(:attendance_embossed_unfinish) { create(:attendance,:attendance_embossed_unfinish) }
+
+
+  describe 'scopeの検索条件が' do
+
+    context "ユーザー名：user1の場合" do
+      it "user1の情報を取得できる" do
+        expect(Attendance.get_by_user(1)).to eq [attendance]
+      end
+      it "user1以外の情報を取得できない" do
+        expect(Attendance.get_by_user(1)).not_to eq [attendance_user2]
+        expect(Attendance.get_by_user(1)).not_to eq [attendance_user3]
+      end
+    end
+
+    context "承認状況：承認済の場合" do
+      it "承認済の勤怠情報を取得できる" do
+        # expect(Attendance.is_approved('approved')) == [attendance_approved]
+        expect(Attendance.is_approved('approved')).to eq [attendance_approved]
+        # expect(Attendance.is_approved('approved').first.id).to eq 4
+      end
+      it "未承認の勤怠情報を取得できない" do
+        expect(Attendance.is_approved('approved')) != [attendance_unapproved]
+      end
+    end
+
+    context "承認状況：未承認の場合" do
+      it "未承認の勤怠情報を取得できる" do
+        # expect(Attendance.is_approved('unapproved')) == [attendance_unapproved]
+        expect(Attendance.is_approved('unapproved').pluck(:id)).to include attendance_unapproved.id
+      end
+      it "承認済の勤怠情報を取得できない" do
+        expect(Attendance.is_approved('unapproved')) != [attendance_approved]
+      end
+    end
+
+    context "打刻状況：打刻済の場合" do
+      it "打刻済の勤怠情報を取得できる" do
+        # expect(Attendance.has_embossed('embossed_finish')) == [attendance_embossed_finish]
+        expect(Attendance.has_embossed(true).pluck(:id)).to include attendance_embossed_finish.id
+      end
+      it "未打刻の勤怠情報を取得できない" do
+        # expect(Attendance.has_embossed('embossed_finish')) != [attendance_embossed_unfinish]
+        expect(Attendance.has_embossed(true).pluck(:id)).not_to include attendance_embossed_unfinish.id
+      end
+    end
+
+    context "打刻状況：未打刻の場合" do
+      it "未打刻の勤怠情報を取得できる" do
+        # expect(Attendance.has_embossed('embossed_unfinish')) == [attendance_embossed_unfinish]
+        expect(Attendance.has_embossed(false).pluck(:id)).to include attendance_embossed_unfinish.id
+      end
+      it "打刻済の勤怠情報を取得できない" do
+        expect(Attendance.has_embossed(false)) != [attendance_embossed_finish]
+      end
+    end
+
+    context "日付範囲：打刻開始時刻の下限を2016/10/2に設定" do
+      xit "打刻開始時間が2016/10/2以降を取得できる" do
+
+      end
+      xit "打刻開始時間が2016/10/1以前を取得できない" do
+
+      end
+    end
+
+    context "日付範囲：打刻終了時刻の上限を2016/10/2に設定" do
+      xit "打刻終了時間が2016/10/2以前を取得できる" do
+
+      end
+      xit "打刻終了時間が2016/10/3以降を取得できない" do
+
+      end
+    end
+
+    context "日付範囲：打刻開始時刻の下限を2016/10/2・打刻終了時刻の上限を2016/10/2に設定" do
+      xit "打刻終了時間が2016/10/2を取得できる" do
+
+      end
+      xit "打刻終了時間が2016/10/3以降を取得できない" do
+
+      end
+    end
+
+  end
+end
+
+
+# .starts_after
+
+# .ends_before
+
+
+
+
+

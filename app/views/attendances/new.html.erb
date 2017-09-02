@@ -1,13 +1,14 @@
 <%= link_to "ユーザー専用トップページ", users_path(current_user.id) %><br />
 
+<h3><%= @error unless @error.nil? %></h3>
 
 <h1>勤怠新規入力</h1>
 
 <%= form_for(@attendance, url: attendances_path) do |f| %>
-  <p>勤怠開始時間：<%= f.datetime_select :start_at, include_blank: true %></p>
-  <p>勤怠終了時間：<%= f.datetime_select :end_at, include_blank: true %></p>
+  <p>勤怠開始時刻：<%= f.datetime_select :start_at, include_blank: true %></p>
+  <p>勤怠終了時刻：<%= f.datetime_select :end_at, include_blank: true %></p>
   <%= f.hidden_field :user_id, value: @user %>
-  <%= f.hidden_field :request, value: true %>
+  <%= f.hidden_field :request, value: "applied" %>
   <%= f.submit "申請" %>
 <% end %>
 
