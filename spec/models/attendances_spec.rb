@@ -116,39 +116,41 @@ RSpec.describe Attendance, type: :model do
       end
     end
 
-    context "日付範囲：打刻開始時刻の下限を2016/10/3に設定" do
-      it "打刻開始時間が2016/10/3以降を取得できる" do
-        expect(Attendance.starts_after(Time.zone.local(2016, 10, 3, 0, 00, 00).to_s).pluck(:id)).to include attendance_date3.id
-        expect(Attendance.starts_after(Time.zone.local(2016, 10, 3, 0, 00, 00).to_s).pluck(:id)).to include attendance_date4.id
-        expect(Attendance.starts_after(Time.zone.local(2016, 10, 3, 0, 00, 00).to_s).pluck(:id)).to include attendance_date5.id
+    context "日付範囲：打刻開始時刻の下限を2016/8/3に設定" do
+      it "打刻開始時間が2016/8/3以降を取得できる" do
+        puts Time.zone.local(2016, 8, 3, 0, 00, 00).to_s
+        puts attendance_date3.start_at.to_s
+        expect(Attendance.starts_after(Time.zone.local(2016, 8, 3, 0, 00, 00).to_s).pluck(:id)).to include attendance_date3.id
+        expect(Attendance.starts_after(Time.zone.local(2016, 8, 3, 0, 00, 00).to_s).pluck(:id)).to include attendance_date4.id
+        expect(Attendance.starts_after(Time.zone.local(2016, 8, 3, 0, 00, 00).to_s).pluck(:id)).to include attendance_date5.id
       end
-      it "打刻開始時間が2016/10/2以前を取得できない" do
-        expect(Attendance.starts_after(Time.zone.local(2016, 10, 3, 0, 00, 00).to_s).pluck(:id)).not_to include attendance_date1.id
-        expect(Attendance.starts_after(Time.zone.local(2016, 10, 3, 0, 00, 00).to_s).pluck(:id)).not_to include attendance_date2.id
+      it "打刻開始時間が2016/8/2以前を取得できない" do
+        expect(Attendance.starts_after(Time.zone.local(2016, 8, 3, 0, 00, 00).to_s).pluck(:id)).not_to include attendance_date1.id
+        expect(Attendance.starts_after(Time.zone.local(2016, 8, 3, 0, 00, 00).to_s).pluck(:id)).not_to include attendance_date2.id
       end
     end
 
-    # context "日付範囲：打刻終了時刻の上限を2016/10/3に設定" do
-    #   it "打刻終了時間が2016/10/3以前を取得できる" do
-    #     expect(Attendance.ends_before('2016, 10, 3'.to_s).pluck(:id)).to include attendance_date1.id
-    #     expect(Attendance.ends_before('2016, 10, 3'.to_s).pluck(:id)).to include attendance_date2.id
-    #     expect(Attendance.ends_before('2016, 10, 3'.to_s).pluck(:id)).to include attendance_date3.id
+    # context "日付範囲：打刻終了時刻の上限を2016/8/3に設定" do
+    #   it "打刻終了時間が2016/8/3以前を取得できる" do
+    #     expect(Attendance.ends_before('2016, 8, 3'.to_s).pluck(:id)).to include attendance_date1.id
+    #     expect(Attendance.ends_before('2016, 8, 3'.to_s).pluck(:id)).to include attendance_date2.id
+    #     expect(Attendance.ends_before('2016, 8, 3'.to_s).pluck(:id)).to include attendance_date3.id
     #   end
-    #   it "打刻終了時間が2016/10/4以降を取得できない" do
-    #     expect(Attendance.ends_before('2016, 10, 3'.to_s).pluck(:id)).not_to include attendance_date4.id
-    #     expect(Attendance.ends_before('2016, 10, 3'.to_s).pluck(:id)).not_to include attendance_date5.id
+    #   it "打刻終了時間が2016/8/4以降を取得できない" do
+    #     expect(Attendance.ends_before('2016, 8, 3'.to_s).pluck(:id)).not_to include attendance_date4.id
+    #     expect(Attendance.ends_before('2016, 8, 3'.to_s).pluck(:id)).not_to include attendance_date5.id
     #   end
     # end
 
-    # context "日付範囲：打刻開始時刻の下限を2016/10/3・打刻終了時刻の上限を2016/10/4に設定" do
-    #   it "打刻終了時間が2016/10/3-4を取得できる" do
-    #     expect(Attendance.date_select(start_at: '2016, 10, 3', end_at: '2016, 10, 4').pluck(:id)).to include attendance_date3.id
-    #     expect(Attendance.date_select(start_at: '2016, 10, 3', end_at: '2016, 10, 4').pluck(:id)).to include attendance_date4.id
+    # context "日付範囲：打刻開始時刻の下限を2016/8/3・打刻終了時刻の上限を2016/8/4に設定" do
+    #   it "打刻終了時間が2016/8/3-4を取得できる" do
+    #     expect(Attendance.date_select(start_at: '2016, 8, 3'.to_s, end_at: '2016, 8, 4'.to_s).pluck(:id)).to include attendance_date3.id
+    #     expect(Attendance.date_select(start_at: '2016, 8, 3'.to_s, end_at: '2016, 8, 4'.to_s).pluck(:id)).to include attendance_date4.id
     #   end
-    #   it "打刻終了時間が2016/10/1,2,5を取得できない" do
-    #     expect(Attendance.date_select(start_at: '2016, 10, 3', end_at: '2016, 10, 4').pluck(:id)).not_to include attendance_date1.id
-    #     expect(Attendance.date_select(start_at: '2016, 10, 3', end_at: '2016, 10, 4').pluck(:id)).not_to include attendance_date2.id
-    #     expect(Attendance.date_select(start_at: '2016, 10, 3', end_at: '2016, 10, 4').pluck(:id)).not_to include attendance_date5.id
+    #   it "打刻終了時間が2016/8/1,2,5を取得できない" do
+    #     expect(Attendance.date_select(start_at: '2016, 8, 3'.to_s, end_at: '2016, 8, 4'.to_s).pluck(:id)).not_to include attendance_date1.id
+    #     expect(Attendance.date_select(start_at: '2016, 8, 3'.to_s, end_at: '2016, 8, 4'.to_s).pluck(:id)).not_to include attendance_date2.id
+    #     expect(Attendance.date_select(start_at: '2016, 8, 3'.to_s, end_at: '2016, 8, 4'.to_s).pluck(:id)).not_to include attendance_date5.id
     #   end
     # end
 
