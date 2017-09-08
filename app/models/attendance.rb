@@ -23,8 +23,6 @@ class Attendance < ApplicationRecord
   scope :starts_after, ->(start_at) { where('start_at > ?', start_at) if start_at.present? }
   scope :ends_before, ->(end_at) { where('end_at < ?', end_at) if end_at.present? }
 
-
-
   scope :date_select, ->(start_at, end_at) {
     if start_at.present? && end_at.present?
       where('start_at > ?', start_at).where('end_at < ?', end_at)
