@@ -119,14 +119,16 @@ class AttendancesController < ApplicationController
   end
 
   # admin 削除
-  def destroy    
+  def destroy
+    @attendance = Attendance.find(params[:id]).destroy
+    redirect_to attendances_path  
   end
 
   # user 申請
   def request_status_change
     @attendance = current_user.latest_attendance
     if @attendance.request == "unapplied"
-       @attendance.update(request: true)
+       @attendance.update(request: 'applied')
     end
     redirect_to users_path(current_user.id) and return
   end
@@ -150,6 +152,7 @@ class AttendancesController < ApplicationController
 
   def attendance_params
     params.require(:attendance).permit(:start_at, :end_at, :user_id, :request, :approval, :edit)
+    # params.require(:attendance).permit(:start_at, :end_at, :user_id)
   end
 
   def authenticate_all

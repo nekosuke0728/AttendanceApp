@@ -30,6 +30,9 @@
 <br>
 
 <%= link_to "編集", edit_attendance_path(@attendance.id) %>
+<% if admin_signed_in? %>
+  <%= link_to "削除", "#{@attendance.id}", method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+<% end %>
 
 <br>
 

@@ -25,27 +25,3 @@
 
 <%= link_to "戻る", :back %>
 
-
-
-<% if false %>
-
-    <h1>編集</h1>
-
-    <h3><%= @error unless @error.nil? %></h3>
-
-      <%= form_for(@attendance, method: :patch) do |f|  %>
-        <p>勤怠ID：<%= @attendance.id %></p>
-        <p>ユーザーID：<%= @attendance.user_id %></p>
-        <p>名前：<%= @attendance.user.name %></p>
-        <p>勤怠開始時間：<%= f.datetime_select :start_at, include_blank: true %></p>
-        <p>勤怠終了時間：<%= f.datetime_select :end_at, include_blank: true %></p>
-        <p>申請状況：<%= @attendance.request_i18n %></p>
-        <p>承認状況：<%= @attendance.approval_i18n %></p>
-        <p>編集状況：<%= @attendance.edit_i18n %></p>
-        <%= f.hidden_field :edit, value: "edited" %>
-        <%= f.submit '更新' %>
-      <% end %>
-
-    <br>
-
-<% end %>

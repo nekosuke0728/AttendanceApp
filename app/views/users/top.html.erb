@@ -26,6 +26,7 @@
 <% elsif current_user.can_request? %>
   <!-- 申請してください -->
   <p>申請されてない勤怠データがあります。申請をしてください。</p>
+  <p>尚、日付を跨いでの勤務終了の場合、一度個人勤怠一覧の編集より終了時間を入力後申請をお願いします。</p>
   <p>勤怠開始時間：<%= current_user.latest_attendance.start_at %></p>
   <p>勤怠終了時間：<%= current_user.latest_attendance.end_at %></p>
   <%= button_to "申請", attendance_request_status_change_path(current_user.id), method: :patch %>

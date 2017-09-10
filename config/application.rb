@@ -15,6 +15,9 @@ module AttendanceApp
 
     config.time_zone = 'Tokyo'
 
+    # カスタムバリデータを読み込んでもらうようにする
+    # config.autoload_paths += %W(#{config.root}/app/validators) 
+
     # config.web_console.whitelisted_ips = '10.0.2.2'
 
     # Settings in config/environments/* take precedence over those specified here.
