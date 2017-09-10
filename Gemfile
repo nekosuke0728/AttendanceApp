@@ -97,6 +97,9 @@ gem 'kaminari', '~> 1.0', '>= 1.0.1'
 # 初期データ投入
 gem 'seed-fu'
 
+# 勤怠の状態によってバリデーションをかける
+gem 'state_machine', '~> 1.2'
+
 
 
 

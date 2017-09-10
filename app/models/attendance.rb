@@ -10,6 +10,13 @@ class Attendance < ApplicationRecord
   enum request: { applied: true, unapplied: false }
   enum edit: { edited: true, unedited: false }
 
+  # validate :unapplied_cannot_approved, on: :approval_status_change
+  # # 勤怠データが未申請の場合、管理者は承認できない
+  # def unapplied_cannot_approved
+  #   if attendance.request == 'unapplied'
+  #     errors.add(:approved_cannot, "can't be in the approved")
+  #   end
+  # end
 
   scope :get_by_user, ->(user_id) { where(user_id: user_id) if user_id.present? }
   scope :has_embossed, ->(status) {
